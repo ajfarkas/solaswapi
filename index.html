@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Star Wars Character Finder</title>
+</head>
+<body>
+	<h1>Star Wars Character Finder</h1>
+	<form>
+		<fieldset>
+			<legend>Find Characters from the Star Wars films</legend>
+			<label for="characters">select a Character</label>
+			<select id="characters" name="character">
+				<option selected value="null">(Loading)</option>
+			</select>
+
+			<button type="submit">Learn about this character</button>
+		</fieldset>
+	</form>
+	<div id="results"></div>
+</body>
+<script	type="text/javascript" src="./render.js" ></script>
+</html>
