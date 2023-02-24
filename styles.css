@@ -38,6 +38,7 @@ h2 {
 	flex-wrap: wrap;
 	justify-content: center;
 	height: 100%;
+	width: 90vw;
 	max-width: 650px;
 	transform: rotateX(-135deg) translateZ(50px) translateY(33%);
 	margin-left: auto;
