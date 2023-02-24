@@ -2,12 +2,10 @@ const $id = id => document.getElementById(id);
 const characterEl = $id('character');
 
 // Get character id from location.search string
-const defaultCharacter = location.search.replace('?', '').split(';').reduce((_, param) => {
-	const [key, val] = param.split('=');
-	if (key === 'id' || key === 'name') return val;
-}, null);
+const defaultCharacter = location.search.replace('?', '').split(';')
+	.filter(param => param.match(/(id|name)=/))[0]?.split('=')[1];
 
-renderAttributes = data => {
+const renderAttributes = data => {
 	[
 		'name',
 		'birth_year',
