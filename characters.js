@@ -1,4 +1,5 @@
-const charContainer = document.getElementById('characters');
+const $ = selector => document.querySelector(selector);
+const charsEl = document.getElementById('characters');
 
 const sortByAlpha = arr => arr.sort((a, b) => a.name < b.name ? -1 : 1);
 
@@ -10,9 +11,19 @@ const renderAllCharacters = (allCharacters = []) => {
 		const id = url.match(/people\/(\d+)/)[1]
 		anchor.setAttribute('href', `./character?id=${id}`);
 		anchor.innerText = name;
+		anchor.classList.add('char-link');
 
-		charContainer.appendChild(anchor);
+		charsEl.appendChild(anchor);
 	});
+
+	// set height/margin on scroll to properly display
+	const titleHeight = parseInt(getComputedStyle($('.title')).height);
+	const subtitleHeight = parseInt(getComputedStyle($('h2')).height);
+	$('.char-container').style.height = `calc(100vh - ${titleHeight + subtitleHeight}px)`;
+	$(':root').style.setProperty(
+		'--scroll-margin',
+		`calc(100vh - ${titleHeight + subtitleHeight}px - 2ex)`
+	);
 };
 
 // fetch all the characters, and populate the select element
@@ -28,7 +39,7 @@ const fetchAllCharacters = (pageN = 1, knownChars = []) => {
 	})
 		.then(data => {
 			if (pageN === 1) {
-				charContainer.innerHTML = '';
+				charsEl.innerHTML = '';
 			}
 
 			allCharacters.push(...data.results);
